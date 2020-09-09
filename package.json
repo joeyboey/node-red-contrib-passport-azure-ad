@@ -1,0 +1,34 @@
+{
+  "name": "node-red-contrib-passport-azure-ad",
+  "version": "0.0.1",
+  "description": "node red wrapper for the passport-azure-ad library",
+  "main": "./nodes/ad-auth.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joeyboey/node-red-contrib-passport-azure-ad.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joeyboey/node-red-contrib-passport-ad/issues"
+  },
+  "keywords": [
+    "node-red",
+    "azure",
+    "passport",
+    "active directory",
+    "ad"
+  ],
+  "node-red": {
+    "nodes": {
+      "ad-config": "./config/ad-config.js",
+      "ad-auth": "./nodes/ad-auth.js"
+    }
+  },
+  "author": "Joe Schwerdtner",
+  "license": "ISC",
+  "dependencies": {
+    "passport-azure-ad": "^4.2.1"
+  }
+}
