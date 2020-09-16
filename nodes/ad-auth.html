@@ -1,0 +1,93 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ad-bearer-auth', {
+        category: 'function',
+        color: '#35afe8',
+        defaults: {
+            name: { value: "AD Bearer Auth", required: true },
+            config: { value: "", type: "ad-config", required: true },
+            tokenLocation: { value: "", required: true }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "db.svg",
+        label: function () {
+            return this.name || "ad-bearer-auth";
+        },
+        paletteLabel: "AD Bearer Auth",
+        oneditprepare: function() {
+            $("#node-input-tokenLocation").typedInput({
+                type: "msg",
+                types: ["msg"],
+                typeField: "#node-input-tokenLocation-type"
+            })
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="ad-bearer-auth">
+    <div class="form-row">
+        <label for="node-input-config"><i class="fa fa-tag"></i> Azure AD Config</label>
+        <input type="text" id="node-input-config" placeholder="Azure AD Config">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-tokenLocation"><i class="fa fa-tag"></i> Token Location</label>
+        <input type="text" id="node-input-tokenLocation" placeholder="Token Location">
+        <input type="hidden" id="node-input-tokenLocation-type">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="ad-bearer-auth">
+    <p>A node that allows to read from a Cosmos DB via the SQL Query Language.</p>
+
+    <h3>Properties</h3>
+        <dl class="message-properties">
+            <dt class="required">Cosmos DB Config <span class="property-type">cosmos-config-node</span></dt>
+            <dd> Cosmos Database to connect with.</dd>
+        </dl>
+        <dl class="message-properties">
+            <dt class="required">Name <span class="property-type">string</span></dt>
+            <dd> The displayed name of the node.</dd>
+        </dl>
+        <dl class="message-properties">
+            <dt class="required">Database <span class="property-type">string</span></dt>
+            <dd> Database ID from the specified Cosmos DB.</dd>
+        </dl>
+
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt class="optional">topic <span class="property-type">string</span></dt>
+        <dd> Optional Parameter to set the desired Query through the <code>msg.topic</code> property. However, anything specified in the query parameter will override this.</dd>
+    </dl>
+    <dl class="message-properties">
+        <dt class="optional">params <span class="property-type">object</span></dt>
+        <dd> Option to specify parameters for prepared statements with the following format:<br><code>{"id": 1234, "city": "Berlin"}</code></dd>
+    </dl>
+
+    <h3>Outputs</h3>
+        <ol class="node-ports">
+            <dl class="message-properties">
+                <dt>payload <span class="property-type">object</span></dt>
+                <dd>Outputs result from the database.</dd>
+            </dl>
+            <dl class="message-properties">
+                <dt>topic <span class="property-type">string</span></dt>
+                <dd>Specified query.</dd>
+            </dl>
+            <dl class="message-properties">
+                <dt>params <span class="property-type">object</span></dt>
+                <dd>Parameter Object from the input</dd>
+            </dl>
+            <dl class="message-properties">
+                <dt>cosmos <span class="property-type">object</span></dt>
+                <dd>Comsos Container API Object (if specified)</dd>
+            </dl>
+            <dl class="message-properties">
+                <dt>initialPayload <span class="property-type">object</span></dt>
+                <dd>Original payload (if specified)</dd>
+            </dl>
+        </ol>
+</script>
