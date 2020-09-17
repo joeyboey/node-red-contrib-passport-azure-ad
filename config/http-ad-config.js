@@ -8,25 +8,18 @@ module.exports = function (RED) {
 
         const bearerStrategy = new BearerStrategy({
             identityMetadata: n.identityMetadata,
-            clientID: n.clientID
+            clientID: n.clientID,
+            scope: [n.scope],
+            passReqToCallback: false
+            //loggingLevel: "info"
         },
             function (token, done) {
-                log.info('verifying the user');
-                log.info(token, 'was the token retreived');
-                findById(token.oid, function (err, user) {
-                    if (err) {
-                        return done(err);
-                    }
-                    if (!user) {
-                        // "Auto-registration"
-                        log.info('User was added automatically as they were new. Their oid is: ', token.oid);
-                        users.push(token);
-                        owner = token.oid;
-                        return done(null, token);
-                    }
+                if (!token.oid)
+                    done(new Error('oid is not found in token'));
+                else {
                     owner = token.oid;
-                    return done(null, user, token);
-                });
+                    done(null, token);
+                }
             }
         );
 

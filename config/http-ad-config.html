@@ -5,6 +5,7 @@
             name: { value: "", required: true },
             identityMetadata: { value: "", required: true },
             clientID: { value: "", required: true },
+            scope: { value: "", required: true }
         },
         label: function () {
             return this.name
@@ -19,10 +20,14 @@
     </div>
     <div class="form-row">
         <label for="node-config-input-identityMetadata"><i class="fa fa-bookmark"></i> Identity Metadata</label>
-        <input type="text" id="node-config-input-identityMetadata" placeholder="https://login.microsoftonline.com/your_tenant_guid/v2.0/.well-known/openid-configuration">
+        <input type="text" id="node-config-input-identityMetadata" placeholder="https://login.microsoftonline.com/[your_tenant_guid]/v2.0/.well-known/openid-configuration">
     </div>
     <div class="form-row">
         <label for="node-config-input-clientID"><i class="fa fa-bookmark"></i> Client ID</label>
         <input type="text" id="node-config-input-clientID" placeholder="clientID">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-scope"><i class="fa fa-bookmark"></i> Scope</label>
+        <input type="text" id="node-config-input-scope" placeholder="[scope]">
     </div>
 </script>
