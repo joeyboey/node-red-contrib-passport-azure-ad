@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('ad-config', {
+    RED.nodes.registerType('http-ad-config', {
         category: 'config',
         defaults: {
             name: { value: "", required: true },
@@ -12,14 +12,14 @@
     });
 </script>
 
-<script type="text/html" data-template-name="ad-config">
+<script type="text/html" data-template-name="http-ad-config">
     <div class="form-row">
         <label for="node-config-input-name"><i class="fa fa-bookmark"></i> Name</label>
         <input type="text" id="node-config-input-name" placeholder="friendly name">
     </div>
     <div class="form-row">
         <label for="node-config-input-identityMetadata"><i class="fa fa-bookmark"></i> Identity Metadata</label>
-        <input type="text" id="node-config-input-identityMetadata" placeholder="https://[instance-name].documents.azure.com:443/">
+        <input type="text" id="node-config-input-identityMetadata" placeholder="https://login.microsoftonline.com/your_tenant_guid/v2.0/.well-known/openid-configuration">
     </div>
     <div class="form-row">
         <label for="node-config-input-clientID"><i class="fa fa-bookmark"></i> Client ID</label>

@@ -1,18 +1,15 @@
 module.exports = function (RED) {
-    function ADBearerAuthNode(n) {
+    function HttpADConfigNode(n) {
         RED.nodes.createNode(this, n);
-        var node = this;
-        const configNode = RED.nodes.getNode(n.config);
 
-        node.options = {
-            identityMetadata: configNode.options.identityMetadata,
-            clientID: configNode.options.clientID
-        };
-
-        const passport = require('passport');
         const BearerStrategy = require('passport-azure-ad').BearerStrategy
 
-        var bearerStrategy = new BearerStrategy(node.options,
+        const name = n.name;
+
+        const bearerStrategy = new BearerStrategy({
+            identityMetadata: n.identityMetadata,
+            clientID: n.clientID
+        },
             function (token, done) {
                 log.info('verifying the user');
                 log.info(token, 'was the token retreived');
@@ -33,10 +30,17 @@ module.exports = function (RED) {
             }
         );
 
-        passport.use(bearerStrategy);
+        this.name = name;
+        this.bearerStrategy = bearerStrategy;
 
-        node.on('input', function (msg) { 
+        this.on('close', function (removed, done) {
+            if (removed) {
+                // This node has been disabled/deleted
+            } else {
+                // This node is being restarted
+            }
+            done();
         });
     }
-    RED.nodes.registerType("ad-bearer-auth", ADBearerAuthNode);
+    RED.nodes.registerType("http-ad-config", HttpADConfigNode);
 }

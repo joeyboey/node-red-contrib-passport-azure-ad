@@ -1,8 +1,8 @@
 {
   "name": "node-red-contrib-passport-azure-ad",
   "version": "0.0.1",
-  "description": "node red wrapper for the passport-azure-ad library",
-  "main": "./nodes/ad-auth.js",
+  "description": "node red http in wrapper for the passport-azure-ad library",
+  "main": "./nodes/http-in-ad-auth.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,13 +22,20 @@
   ],
   "node-red": {
     "nodes": {
-      "ad-config": "./config/ad-config.js",
-      "ad-auth": "./nodes/ad-auth.js"
+      "http-ad-config": "./config/http-ad-config.js",
+      "http-in-ad-auth": "./nodes/http-in-ad-auth.js"
     }
   },
   "author": "Joe Schwerdtner",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "dependencies": {
+    "cookie-parser": "1.4.5",
+    "cors": "2.8.5",
+    "body-parser": "1.19.0",
+    "hash-sum": "2.0.0",
+    "is-utf8": "0.2.1",
+    "multer": "1.4.2",
+    "on-headers": "1.0.2",
     "passport-azure-ad": "^4.2.1"
   }
 }
