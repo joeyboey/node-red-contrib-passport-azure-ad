@@ -18,7 +18,9 @@
     "azure",
     "passport",
     "active directory",
-    "ad"
+    "ad",
+    "bearer",
+    "authentication"
   ],
   "node-red": {
     "nodes": {
